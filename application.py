@@ -10,16 +10,15 @@ application = app = Flask(__name__)
 app.secret_key = "secret"
 
 
-database_name = 'hospitalmanagement'
-database_username = 'root'
-database_password = 'godon2009'
+database_name = os.environ['RDS_DB_NAME']
+database_username = os.environ['RDS_USERNAME']
+database_password = os.environ['RDS_PASSWORD']
 
 
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://{}:{}@{}/{}'.format(
-    database_username, database_password, '127.0.0.1', database_name)
+    database_username, database_password, f"{os.environ['RDS_HOSTNAME']}:{os.environ['RDS_PORT']}", database_name)
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
 
 db.init_app(app)
 login.init_app(app)
