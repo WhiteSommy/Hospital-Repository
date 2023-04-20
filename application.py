@@ -1,4 +1,5 @@
 import logging
+import os
 from flask import Flask, flash, redirect, render_template, request, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
