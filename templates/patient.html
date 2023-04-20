@@ -1,0 +1,65 @@
+{% extends 'layouts/patient_dashboard.html' %}
+{% block content %}
+
+<div class="container mt-4">
+		<div>
+            <h2>Welcome {{current_user.firstname}}</h2>
+            <div class="my-5">
+                <h3 class="my-5">About Me</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{current_user.firstname}} {{current_user.lastname}}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{current_user.email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Mobile</th>
+                            <td>{{current_user.phonenumber}}</td>
+                        </tr>
+                        <tr>
+                            <th>Sex</th>
+                            <td>{{current_user.gender}}</td>
+                        </tr>
+                    </thead>
+                    
+                </table>
+            </div>
+
+            <a href="/editpatientprofile">Edit Profile</a>
+        </div>
+        <div class="container my-5">
+        <h2>Medical History / Appointments</h2>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Diagnosis</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            {% for appointment in appointments %}
+            <tbody>
+                <tr>
+                    
+                    <td>{{appointment.doctor.firstname}} {{appointment.doctor.lastname}}</td>
+                    <td>{{appointment.appointment.condition}}</td>
+                    <td>{{appointment.appointment.date}}</td>
+                    <td>{{appointment.appointment.time}}</td>
+                      <td>
+                        <a class="btn btn-danger btn-sm" href="/">Delete </a>
+                    </td>
+                </tr>
+                
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

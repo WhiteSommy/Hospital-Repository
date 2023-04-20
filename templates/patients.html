@@ -1,0 +1,38 @@
+{% extends 'layouts/admin_dashboard_layout.html' %}
+{% block title %} Patients {% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+			<!--  -->
+        <div class="container my-5">
+        <h2>Patients</h2>
+        <br>
+        {% if length >= 1 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Sex</th>
+                    <th>Mobile Number</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            {% for patient in patients %}
+            <tbody>
+                <tr>
+                    <td>{{patient.firstname}} {{patient.lastname}}</td>
+                    <td>{{patient.gender}}</td>
+                    <td>{{patient.phonenumber}}</td>
+                    <td>{{patient.email}}</td>
+                      <td>
+                        <a class="btn btn-danger btn-sm" href="/">Delete </a>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+        {% else %}
+            <h4>No Patient Record Found</h4>
+        {% endif %}
+    </div>
+{% endblock %}

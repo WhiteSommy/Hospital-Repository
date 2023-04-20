@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../static/styling.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+  <input type="checkbox" id="checkbox">
+	<header class="header">
+		<h2 class="u-name" >HOSPITAL <b>MANAGEMENT</b>
+			<label for="checkbox">
+				<i id="navbtn" class="fa fa-bars" aria-hidden="true"></i>
+			</label>
+		</h2>
+		<i class="fa fa-user" aria-hidden="true"></i>
+	</header>
+    <header class="nav-head">
+        <!-- Menu -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            <a class="navbar-brand" href="#"></a>
+            
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link mx-auto"  href="/" style="padding-left: 500px;"><center>HOME</center> <span></span> </a>
+                </li>
+                {% if not current_user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link mx-auto"  href="/login" style="padding-left: 100px;">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-auto"  href="/signup" style="padding-left: 100px;">Register</a>
+                </li>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link mx-auto"  href="/logout" style="padding-left: 100px;">Logout</a>
+                  </li>
+                {% endif %}
+              </ul>
+            
+            </div>
+        </nav>
+    </header>
+    
+    <div class="bgimg-1" >
+        <div class="caption"  >
+          <button>
+            <a href="/editpatientprofile">If you are a patient, Please fill in this form!. Thank you for your cooperation.</a>
+          </button>
+        </div>
+      </div>
+ 
+     
+</body> 
+
+
+   
+</html>

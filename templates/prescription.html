@@ -1,0 +1,29 @@
+{% extends 'layouts/patient_dashboard.html' %}
+{% block content %}
+<h2>Prescriptions</h2>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Drug Name</th>
+                    <th>Doctor Prescription</th>
+                    <th>Diagnosis</th>
+                    
+                </tr>
+            </thead>
+            {% for prescription in prescriptions %}
+            <tbody>
+                <tr>
+                    
+                    <td>{{prescription.doctor.firstname}} {{prescription.doctor.lastname}}</td>
+                    <td>{{prescription.prescription.drug}}</td>
+                    <td>{{prescription.prescription.quantity}}</td>
+                    <td>{{prescription.prescription.condition}}</td>
+                </tr>
+                
+            </tbody>
+            {% endfor %}
+        </table>
+
+{% endblock %}

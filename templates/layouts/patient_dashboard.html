@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Patient Dashboard</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	{% block style %} {% endblock %}
+</head>
+<body>
+	<input type="checkbox" id="checkbox">
+	<header class="header">
+		<h2 class="u-name" >HOSPITAL <b>MANAGEMENT</b>
+			<label for="checkbox">
+				<i id="navbtn" class="fa fa-bars" aria-hidden="true"></i>
+			</label>
+		</h2>
+		<i class="fa fa-user" aria-hidden="true"></i>
+	</header>
+	<div class="body">
+		<nav class="side-bar">
+			<div class="user-p">
+				<img src="../static/img/default_j15nntl.jpg">
+				<h4>PATIENT Profile</h4>
+			</div>
+        
+            
+			<ul>
+
+                <li>
+					<a href="/patientdashboard">
+						<i class="fa fa-desktop" aria-hidden="true"></i>
+						<span>Patient Profile</span>
+					</a>
+				</li>
+				<li>
+					<a href="/bookappointment">
+						<i class="fa fa-hospital-o" aria-hidden="true"></i>
+						<span>Book Appointment</span>
+					</a>
+				</li>
+				<li>
+					<a href="/prescriptions">
+						<i class="fa fa-hospital-o" aria-hidden="true"></i>
+						<span>Drug Prescriptions</span>
+					</a>
+				</li>
+				<li>
+					<a href="/logout">
+						<i class="fa fa-power-off" aria-hidden="true"></i>
+						<span>Logout</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		
+
+		<main>
+			{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification is-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+            {% endwith %}
+			{% block content %} {% endblock %}
+		</main>
+			<!-- Bootstrap JS and jQuery -->
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	
+</body>
+</html>

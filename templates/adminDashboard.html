@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Dashboard</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+<body>
+	<input type="checkbox" id="checkbox">
+	<header class="header">
+		<h2 class="u-name" >HOSPITAL <b>MANAGEMENT</b>
+			<label for="checkbox">
+				<i id="navbtn" class="fa fa-bars" aria-hidden="true"></i>
+			</label>
+		</h2>
+		<i class="fa fa-user" aria-hidden="true"></i>
+	</header>
+	<div class="body">
+		<nav class="side-bar">
+			<div class="user-p">
+				<img src="../static/img/default_j15nntl.jpg">
+				<h4>Welcome</h4>
+			</div>
+        
+            
+			<ul>
+
+                <li>
+					<a href="/admin/dashboard">
+						<i class="fa fa-desktop" aria-hidden="true"></i>
+						<span>Dashboard</span>
+					</a>
+				</li>
+				<li>
+					<a href="/admin/doctors">
+						<i class="fa fa-hospital-o" aria-hidden="true"></i>
+						<span>Doctors</span>
+					</a>
+				</li>
+				<li>
+					<a href="/admin/patients">
+						<i class="fa fa-hospital-o" aria-hidden="true"></i>
+						<span>Patients</span>
+					</a>
+				</li>
+
+                <li>
+					<a href="/admin/appointments">
+						<i class="fa fa-hospital-o" aria-hidden="true"></i>
+						<span>Appointments</span>
+					</a>
+				</li>
+				
+				<li>
+					<a href="/logout">
+						<i class="fa fa-power-off" aria-hidden="true"></i>
+						<span>Logout</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		
+
+		<div class="container mt-4">
+			<h1>Welcome {{current_user.firstname}}</h1>
+			<table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{current_user.firstname}} {{current_user.lastname}}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{current_user.email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Mobile</th>
+                            <td>{{current_user.phonenumber}}</td>
+                        </tr>
+                        <tr>
+                            <th>Sex</th>
+                            <td>{{current_user.gender}}</td>
+                        </tr>
+                    </thead>
+                    
+                </table>
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="btn-group-vertical w-100">
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+
+						<div class="btn-group">
+							<button class="btn btn-outline-secondary btn-sm">5</button>
+							<button class="btn btn-primary btn-lg">Doctors Available </button>
+						</div>
+						<div class="btn-group">
+							<button class="btn btn-outline-secondary btn-sm">5</button>
+							<button class="btn btn-secondary btn-lg">Patient Appointments</button>
+						</div>
+						<div class="btn-group">
+							<button class="btn btn-outline-secondary btn-sm">5</button>
+							<button class="btn btn-success btn-lg">Appointment Remaining</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+			<!-- Bootstrap JS and jQuery -->
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	
+</body>
+</html>

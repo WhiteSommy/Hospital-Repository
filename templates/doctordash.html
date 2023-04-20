@@ -1,0 +1,35 @@
+{% extends 'layouts/doctor_dashboard.html' %} {% block content %}
+
+<div class="container mt-4">
+  <div>
+    <h2>Welcome {{current_user.firstname}}</h2>
+    <div class="my-5">
+      <h3 class="my-5">About Me</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <td>{{current_user.firstname}} {{current_user.lastname}}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>{{current_user.email}}</td>
+          </tr>
+          <tr>
+            <th>Mobile</th>
+            <td>{{current_user.phonenumber}}</td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <a href="/editdoctorprofile">Edit Profile</a>
+  </div>
+  <div class="container my-5">
+    <h2>Total Appointments</h2>
+    <br />
+    <h3>{{total_appointments}}</h3>
+  </div>
+
+  {% endblock %}
+</div>

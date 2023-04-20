@@ -1,0 +1,60 @@
+{% extends 'layouts/patient_dashboard.html' %}
+{% block styles %}
+  <link rel="stylesheet" href="../static/form.css"> 
+{% endblock %}
+
+
+{% block content %}
+
+<div class="right-side-dash">
+  <div class="account-form">
+    <form method="POST" class="meta-form" action="/bookappointment">
+      <div class="meta-form-field">
+        <label for="text" class="field-label">First Name</label>
+        <input type="text" name="firstname" placeholder="Franc" required />
+      </div>
+
+      <div class="meta-form-field">
+        <label for="text" class="field-label">Last Name</label>
+        <input type="text" name="lastname" placeholder="Edu" required />
+      </div>
+      <div class="meta-form-field">
+        <label for="gender">Gender</label><br />
+        <select name="gender" id="status" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+      <div class="meta-form-field">
+        <label for="date" class="field-label">Date</label>
+        <input type="date" name="date" id="" placeholder="Date" required />
+      </div>
+      <div class="meta-form-field">
+        <label for="time" class="field-label">Time</label>
+        <input type="time" name="time" id="" placeholder="Time" required />
+      </div>
+      <div class="meta-form-field">
+        <label for="phonenumber" class="field-label">Phone Number</label>
+        <input type="tel" name="phonenumber" id="" placeholder="Phone Number" required />
+      </div>
+      <div class="meta-form-field">
+        <label for="doctors" class="field-label">Select Doctor</label>
+        <select name="select-doctor" id="" required>
+          {% for doctor in doctors %}
+          <option value="{{doctor.id}}">Dr. {{doctor.firstname}} {{doctor.lastname}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="meta-form-field">
+        <label for="injury-condition" class="field-label">Injury/Condition</label>
+        <input type="text" name="injury-condition" id="" placeholder="Injury/Condition" required />
+      </div>
+
+      <div class="meta-form-field">
+        <button id="register">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

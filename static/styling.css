@@ -1,0 +1,43 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    color: #23242b;
+  }
+  
+
+  .bgimg-1{
+    opacity: 0.95;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../static/img/picture.png");
+    height: 100%;
+    opacity: 0.5
+    }
+
+  .caption {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: #000;
+  }
+  
+  .caption span.border {
+    background-color: #111;
+    color: #fff;
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 10px;
+  }
+  
+.border{
+    border-radius: 8px;
+    background: #111111;
+}
+.bgimg-1 .caption .border:hover{
+    border-radius: 8px;
+    background: #111111;
+    background-color: aqua;
+    cursor: pointer;
+}

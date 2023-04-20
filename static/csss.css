@@ -1,0 +1,28 @@
+body{
+    height: 1575px;
+    width: 1462px;
+    left: -11135px;
+    top: 7355px;
+    border-radius: 0px;
+    background: #D9D9D9;
+
+}
+
+#boss{
+    height: 64px;
+    width: 352px;
+    left: -11011px;
+    top: 7441px;
+    border-radius: 8px;
+    padding: 16px 24px 16px 24px;
+    background: #9A9A9A;
+}
+
+.king1{
+    height: 64px;
+    width: 532px;
+    left: -10966px;
+    top: 7752px;
+    border-radius: 8px;
+    padding: 16px 24px 16px 24px;
+}

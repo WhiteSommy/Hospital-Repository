@@ -1,0 +1,44 @@
+{% extends 'layouts/doctor_dashboard.html' %}
+{% block title %} Doctor Profile {% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+			<!--  -->
+        <div class="container my-5">
+        <h2>Appointments</h2>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Patient Name</th>
+                    <th>Phone Number</th>
+                    <th>Sex</th>
+                    <th>Injury/Condition</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            {% for appointment in appointments%}
+            <tbody>
+                <tr>
+                    <td>{{appointment.patient.ID}} {{appointment.patient.ID}} </td>
+                    <td>{{appointment.patient.firstname}} {{appointment.patient.lastname}} </td>
+                    <td>{{appointment.patient.phonenumber}}</td>
+                    <td>{{appointment.patient.gender}}</td>
+                    <td>{{appointment.appointment.condition}}</td>
+                    <td>{{appointment.appointment.date}}</td>
+                    <td>{{appointment.appointment.time}}</td>
+                    
+                      <td>
+                        <a class="btn btn-danger btn-sm" href="/">Delete </a>
+                    </td>
+                </tr>
+                
+            </tbody>
+            {% endfor %}
+
+        </table>
+    </div>
+{% endblock %}

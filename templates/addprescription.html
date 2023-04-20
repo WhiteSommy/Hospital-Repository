@@ -1,0 +1,49 @@
+{% extends 'layouts/doctor_dashboard.html' %}
+{% block title %} Doctor Profile {% endblock %}
+{% block style %} 
+<link rel="stylesheet" href="../static/form.css"> 
+{% endblock %}
+{% block content %}
+
+<div class="right-side-dash">
+    <h2>Drug Prescription</h2>
+
+    <div class="account-form">
+        <!-- Register Form -->
+        <form method="POST" class="meta-form" action="/addprescription">
+    
+            <div class="meta-form-field">
+                <label for="text" class="field-label">Drug Name</label>
+                <input type="text" name="drug" placeholder="Paracetamol" required>
+            </div>
+
+            <div class="meta-form-field">
+                <label for="text" class="field-label">Injury/Condition</label>
+                <input type="text" name="condition" placeholder="Ulcer" required>
+            </div>
+    
+            <div class="meta-form-field">
+                <label for="text" class="field-label">Quantity/Prescription</label>
+                <input type="text" name="quantity" placeholder="Take one morning and one at night" required>
+            </div>
+            
+            
+            <div class="meta-form-field">
+                <label for="patient">Patient</label><br>
+                <select name="patient" id="patient" required>
+                    {% for user in users %}
+                    <option value={{user.id}}>{{user.firstname}} {{user.lastname}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        
+                
+            <div class="meta-form-field">
+                <button id="register">Prescribe Drug</button>
+            </div> 
+        </form>
+            
+    </div>
+</div>
+
+{% endblock %}

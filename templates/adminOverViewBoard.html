@@ -1,0 +1,428 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <input type="checkbox" id="checkbox">
+    <header class="header">
+      <h2 class="u-name" >HOSPITAL <b>MANAGEMENT</b>
+        <label for="checkbox">
+          <i id="navbtn" class="fa fa-bars" aria-hidden="true"></i>
+        </label>
+      </h2>
+      <i class="fa fa-user" aria-hidden="true"></i>
+    </header>
+    <div class="body"><style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 90px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+            z-index: 99;
+        }
+
+        @media (max-width: 767.98px) {
+            .sidebar {
+                top: 11.5rem;
+                padding: 0;
+            }
+        }
+            
+        .navbar {
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+        }
+
+        @media (min-width: 767.98px) {
+            .navbar {
+                top: 0;
+                position: sticky;
+                z-index: 999;
+            }
+        }
+
+        .sidebar .nav-link {
+            color: #333;
+        }
+
+        .sidebar .nav-link.active {
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+  <nav class="side-bar">
+    <div class="user-p">
+      <img src="../static/img/default_j15nntl.jpg">
+      <h4>ADMIN</h4>
+    </div>
+      
+          
+    <ul>
+      <li>
+        <a href="index.html">
+          <i class="fa fa-home"></i>
+          <span>Home</span>
+        </a>
+      </li>
+
+              <li>
+        <a href="#">
+          <i class="fa fa-desktop" aria-hidden="true"></i>
+          <span>OverView Board</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="index.html">
+          <i class="fa fa-hospital-o" aria-hidden="true"></i>
+          <span>All Patient and Doctor 
+                            <br>Data
+
+                      </span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="fa fa-power-off" aria-hidden="true"></i>
+          <span>Logout</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item" index><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Overview</li>
+                    </ol>
+                </nav>
+                <h1 class="h2">ADMIN DASHBOARD</h1>
+                <p>This is the OverView page of the admin interface </p>
+                <div class="row my-4">
+                    <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                        <div class="card">
+                            <h5 class="card-header">Doctors</h5>
+                            <div class="card-body">
+                              <a class="card-title">4 Available  <p class="card-text">out of<a class="card-title"> 7 </a></p></a>                      
+                              <p class="card-text text-success">Dr Tony Surgeon (Logged out at 8:00pm)</p>
+                              <p class="card-text text-success">Dr Drake Surgeon (Logged out at 8:00pm)</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+                        <div class="card">
+                            <h5 class="card-header">Patients</h5>
+                            <div class="card-body">
+                              <a class="card-title">4 Available  <p class="card-text">out of<a class="card-title"> 7 </a></p></a>                      
+
+                              <p class="card-text text-success">Mr. Tony Surgeon (Logged out at 8:00pm)</p>
+                              <p class="card-text text-success">Mr. Drake Surgeon (Logged out at 8:00pm)</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+                        <div class="card">
+                            <h5 class="card-header">Appointments</h5>
+                            <div class="card-body">
+                              <h5 class="card-title">4 Available <p class="card-text">out of<a class="card-title"> 7 </a></p></a>
+                                <p class="card-text text-success">Mr. Tony Surgeon (attended to Patient Tony at 8:00pm)</p>
+                                <p class="card-text text-success">Mr. Tony Surgeon (attended to Patient Tony at 8:00pm)</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+                        <div class="card">
+                            <h5 class="card-header">Sessions</h5>
+                            <div class="card-body">
+                              <h5 class="card-title">4 Available<p class="card-text">out of<a class="card-title"> 7 </a></p></a>
+                                <p class="card-text text-success">Mr. Tony Surgeon (attended to Patient Tony at 8:00pm)</p>
+                                <p class="card-text text-success">Mr. Tony Surgeon (attended to Patient Tony at 8:00pm)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="card">
+                            <h5 class="card-header">User Details</h5>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Patient Name</th>
+                                            <th scope="col">Patient Home Address</th>
+                                            <th scope="col">Patient Email Address</th>
+                                            <th scope="col">Patient Password</th>
+                                            <th scope="col"> Summary</th>
+                                            <th scope="col">Time of Login</th>
+                                            <th scope="col">Appointment</th>
+                                            <th scope="col">Appointment Date and Time(Login    &   Logout)</th>
+                                            <th scope="col">Sessions</th>
+                                            <th scope="col">Sessions Date and Time(Login     &    Logout)</th>
+
+
+
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">17371705</th>
+                                            <td>Dr. Volt Premium </td>
+                                            <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                            <td>jacob.monroe@company.com</td>
+                                            <td>1234567890-</td>
+                                            <td><a href="#" class="btn btn-sm btn-primary">View Summary</a></td>
+                                            <td>Time of login </td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">17370540</th>
+                                            <td>Mr. Pixel Pro</td>
+                                            <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                            <td>jacob.monroe@company.com</td>
+                                            <td>1234567890-</td>
+                                            <td><a href="#" class="btn btn-sm btn-primary">View Summary</a></td>
+                                            <td>Time of login </td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">17371705</th>
+                                            <td>Dr. Volt Premium </td>
+                                            <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                            <td>jacob.monroe@company.com</td>
+                                            <td>1234567890-</td>
+                                            <td><a href="#" class="btn btn-sm btn-primary">View Summary</a></td>
+                                            <td>Time of login </td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">17370540</th>
+                                            <td>Mr. Pixel Pro</td>
+                                            <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                            <td>jacob.monroe@company.com</td>
+                                            <td>1234567890-</td>
+                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
+                                            <td>Time of login </td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">17371705</th>
+                                            <td>Dr. Volt Premium </td>
+                                            <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                            <td>jacob.monroe@company.com</td>
+                                            <td>1234567890-</td>
+                                            <td><a href="#" class="btn btn-sm btn-primary">View Summary</a></td>
+                                            <td>Time of login </td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">17370540</th>
+                                            <td>Mr. Pixel Pro</td>
+                                            <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                            <td>jacob.monroe@company.com</td>
+                                            <td>1234567890-</td>
+                                            <td><a href="#" class="btn btn-sm btn-primary">View Summary</a></td>
+                                            <td>Time of login </td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+                                            <td>Yes</td>
+                                            <td>12-5-2023 (3:00am | 5:00pm)</td>
+
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                </div>
+                                <a href="#" class="btn btn-block btn-light">View all</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                <footer class="pt-5 d-flex justify-content-between">
+                   
+                </footer>
+
+                <div class="row">
+                      <div class="card">
+                          <h5 class="card-header">Patient Medicial History and Prescription</h5>
+                          <div class="card-body">
+                              <div class="table-responsive">
+                                  <table class="table">
+                                      <thead>
+                                        <tr>
+                                          <th scope="col">ID</th>
+                                          <th scope="col">Patient Name</th>
+                                          <th scope="col">Patient Home Address</th>
+                                          <th scope="col">Patient Email Address</th>
+                                          <th scope="col">Patient Password</th>
+                                          <th scope="col"> Summary</th>
+                                          <th scope="col"> Time of Login</th>
+                                          <th scope="col"> Blood Pressure</th>
+                                          <th scope="col"> Mental Illness</th>
+                                          <th scope="col"> Pregnant</th>
+                                          <th scope="col"> Blood Type</th>
+                                          <th scope="col"> Weight</th>
+                                          <th scope="col"> Height</th>
+                                          <th scope="col"> Allergies</th>
+                                          <th scope="col"> Substances</th>
+                                          <th scope="col"> Dosage</th>
+                                          <th scope="col"> Duration of Dosage</th>
+                                          <th scope="col"> Doctor's Instructions</th>
+                                          <th scope="col"> Prior Diseases</th>
+                                          <th scope="col"> Allergies</th>
+                                          <th scope="col"> Any Prior sustances(like drugs)</th>
+                                          <th scope="col"> Medication</th>
+                                          <th scope="col"> Genotype</th>
+                                          <th scope="col">Genotype</th>
+
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <th scope="row">17371705</th>
+                                          <td>Dr. Volt Premium </td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <th >17371705</th>
+                                          <td><a href="#" class="btn btn-sm btn-primary">View Summary</a></td>
+                                          <td>Time of login </td>
+                                          <th scope="row">17371705</th>
+                                          <td>Dr. Volt Premium </td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>Dr. Volt Premium </td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>1234567890-</td>
+
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">17370540</th>
+                                          <td>Mr. Pixel Pro</td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>1234567890-</td>
+                                          <td><a href="#" class="btn btn-sm btn-primary">View Summary</a></td>
+                                          <td>Time of login </td>
+                                          <td>Dr. Volt Premium </td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>1234567890-</td>
+
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">17371705</th>
+                                          <td>Dr. Volt Premium </td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>1234567890-</td>
+                                          <td><a href="#" class="btn btn-sm btn-primary">View Summary</a></td>
+                                          <td>Time of login </td>
+                                          <th scope="row">17371705</th>
+                                          <td>Dr. Volt Premium </td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>1234567890-</td>
+
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">17370540</th>
+                                          <td>Mr. Pixel Pro</td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>1234567890-</td>
+                                          <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
+                                          <td>Time of login </td>
+                                          <th scope="row">17371705</th>
+                                          <td>Dr. Volt Premium </td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>1234567890-</td>
+
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">17371705</th>
+                                          <td>Dr. Volt Premium </td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>1234567890-</td>
+                                          <td><a href="#" class="btn btn-sm btn-primary">View Summary</a></td>
+                                          <td>Time of login </td>
+                                          <th scope="row">17371705</th>
+                                          <td>Dr. Volt Premium </td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>1234567890-</td>
+
+                                        </tr>
+                                        <tr>
+                                          <th scope="row">17370540</th>
+                                          <td>Mr. Pixel Pro</td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>1234567890-</td>
+                                          <td><a href="#" class="btn btn-sm btn-primary">View Summary</a></td>
+                                          <td>Time of login </td>
+                                          <th scope="row">17371705</th>
+                                          <td>Dr. Volt Premium </td>
+                                          <td>Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.</td>
+                                          <td>jacob.monroe@company.com</td>
+                                          <td>1234567890-</td>
+
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                              </div>
+                              <a href="#" class="btn btn-block btn-light">View all</a>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  
+              <footer class="pt-5 d-flex justify-content-between">
+                 
+              </footer>
+             
+                
+            <footer class="pt-5 d-flex justify-content-between">
+               
+            </footer>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+   
+</body>
+</html>
