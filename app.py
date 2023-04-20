@@ -6,7 +6,7 @@ from flask_login import login_required, current_user, login_user, logout_user
 
 from models import db, User, Appointment, Prescription, login
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 app.secret_key = "secret"
 
 
