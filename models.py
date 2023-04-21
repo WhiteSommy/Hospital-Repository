@@ -35,6 +35,10 @@ class User(UserMixin, db.Model):
     def update_user(self):
         db.session.commit()
 
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
 
 @login.user_loader
 def load_user(id):
@@ -69,6 +73,10 @@ class Appointment(db.Model):
 
     def add_appointment(self):
         db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
         db.session.commit()
 
 
