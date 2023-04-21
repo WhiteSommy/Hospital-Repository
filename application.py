@@ -38,7 +38,7 @@ login.login_view = 'login'
 
 '''
 Create the database tables as defined in models.py
-''''
+'''
 @app.before_first_request
 def create_all():
     db.create_all()
