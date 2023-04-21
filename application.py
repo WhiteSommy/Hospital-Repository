@@ -7,10 +7,16 @@ from flask_login import login_required, current_user, login_user, logout_user
 
 from models import db, User, Appointment, Prescription, login
 
+'''
+Initialization of the flask application
+'''
 application = app = Flask(__name__)
 app.secret_key = "secret"
 
 
+'''
+Setting up the database config 
+'''
 database_name = os.environ['RDS_DB_NAME']
 database_username = os.environ['RDS_USERNAME']
 database_password = os.environ['RDS_PASSWORD']
@@ -21,11 +27,18 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://{}:{}@{}/{}'.format(
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+'''
+initialize the data base connection
+and the login service
+'''
 db.init_app(app)
 login.init_app(app)
 login.login_view = 'login'
 
 
+'''
+Create the database tables as defined in models.py
+''''
 @app.before_first_request
 def create_all():
     db.create_all()
@@ -39,26 +52,32 @@ def create_all():
 @app.route('/index')
 @login_required
 def index():
+    '''
+    Home page view
+    '''
     return render_template("index.html")
 
 
 @app.route('/forgetpassword', methods=['GET', 'POST'])
 def forget_password():
-
+    '''
+    Forgot password view
+    '''
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm-password')
 
         if password != confirm_password:
+            # ensure password and forgot password are the same
             flash('Password MisMatch')
             return redirect('fp.html')
 
         try:
-            user = User.query.filter_by(email=email).first()
+            user = User.query.filter_by(email=email).first() # fetch user from db
             user.password = generate_password_hash(
                 password,  method='sha256', salt_length=10)
-            user.update_user()
+            user.update_user() # update the user with new password
             flash('Password Updated Successfully')
             return redirect(url_for('login'))
 
@@ -76,6 +95,9 @@ def forget_password():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_signup():
+    '''
+    The admin signup view
+    '''
     if request.method == 'POST':
         # Read the posted values from the UI
 
@@ -112,7 +134,7 @@ def admin_signup():
             new_user = User(firstname=firstname, lastname=lastname, email=email,
                             gender=gender, phonenumber=phonenumber, password=password, status=status)
             print(new_user)
-            new_user.add_user()
+            new_user.add_user() # add user to db
             print(new_user)
             flash("Account Created Successfuly")
             return redirect(url_for('login'))
@@ -128,11 +150,17 @@ def admin_signup():
 @app.route('/admin/dashboard')
 @login_required
 def admindashboard():
+    '''
+    Admin dashboard view
+    gives an overview of the number of doctors, patients and
+    appointments
+    '''
     if request.method == 'GET':
         if current_user.status != 'admin':
             return render_template('403.html')
         count_map = {}
         try:
+            # gets the current count of doctors, patients amd appointment
             count_map['doctors'] = User.query.filter_by(status='doctor').count()
             count_map['patients'] = User.query.filter_by(status='patient').count()
             count_map['appointments'] = Appointment.query.count()
@@ -144,11 +172,17 @@ def admindashboard():
 @app.route('/admin/doctors', methods=['GET', 'POST'])
 @login_required
 def doctors():
+    '''
+    The admin -> Doctor view
+    '''
+
     if current_user.status != 'admin':
         return render_template('403.html')
-    doctors = User.query.filter_by(status='doctor').all()
+
+    doctors = User.query.filter_by(status='doctor').all() # fetch all the doctors
 
     if request.method == 'POST':
+        # this is an admin action to delete a doctor
         _id = int(request.form.get('id'))
         try:
             # deletes from the db and removes from the list of 
@@ -165,15 +199,19 @@ def doctors():
 @app.route('/admin/patients', methods=['GET', 'POST'])
 @login_required
 def patients():
+    '''
+    The admin -> Patient view
+    '''
     if current_user.status != 'admin':
         return render_template('403.html')
-    patients = User.query.filter_by(status='patient').all()
+    patients = User.query.filter_by(status='patient').all() # fetch all the patients
 
     if request.method == 'POST':
+        # this is an admin action to delete a patient
         _id = int(request.form.get('id'))
         try:
             # deletes from the db and removes from the list of 
-            # previously queried doctors
+            # previously queried patients
             User.query.get(_id).delete()
             patients = list(filter(lambda x : x.id != _id, 
                                   patients))
@@ -186,16 +224,20 @@ def patients():
 @app.route('/admin/appointments', methods=['GET', 'POST'])
 @login_required
 def allAppointments():
+    '''
+    The admin -> Appointment view
+    '''
     if current_user.status != 'admin':
         return render_template('403.html')
     
-    appointments = Appointment.query.all()    
+    appointments = Appointment.query.all()   # fetch all the appointments
 
     if request.method == 'POST':
+        # this is an admin action to remove an appointment
         _id = int(request.form.get('id'))
         try:
             # deletes from the db and removes from the list of 
-            # previously query appointements
+            # previously queried appointements
             Appointment.query.get(_id).delete()
             appointments = list(filter(lambda x : x.id != _id, 
                                   appointments))
@@ -211,6 +253,10 @@ def allAppointments():
 @app.route('/doctordashboard')
 @login_required
 def doctordashboard():
+    '''
+    The doctor dashboard
+    gives an overview on the number of appointments
+    '''
     if request.method == 'GET':
         if current_user.status != 'doctor':
             return render_template('403.html')
@@ -221,6 +267,10 @@ def doctordashboard():
 @app.route('/editdoctorprofile')
 @login_required
 def editdoctorprofile():
+    '''
+    The doctor edir profile view
+    enables the doctor to edit profile
+    '''
     doctor = User.query.get(current_user.id)
 
     firstname = request.form.get('firstname')
@@ -255,6 +305,11 @@ def editdoctorprofile():
 @app.route('/doctorappointments', methods=['GET', 'POST'])
 @login_required
 def doctorprofile():
+    '''
+    The Doctors -> Appointment view
+    enables the doctor to see all his available appointments
+    '''
+
     if current_user.status != 'doctor':
         return render_template('403.html')
     appointments = []
@@ -265,10 +320,11 @@ def doctorprofile():
         appointments.append({"appointment": appointment, "patient": patient})
 
     if request.method == 'POST':
+        # the doctor action to delete an appointment
         _id = int(request.form.get('id'))
         try:
             # deletes from the db and removes from the list of 
-            # previously query appointements
+            # previously queried appointements
             Appointment.query.get(_id).delete()
             appointments = list(filter(lambda x : x['appointment'].id != _id, 
                                   appointments))
@@ -282,6 +338,10 @@ def doctorprofile():
 @app.route('/addprescription', methods=['GET', 'POST'])
 @login_required
 def add_prescription():
+    '''
+    The Doctor's add prescription view
+    enables the doctor to create a prescription for a patient
+    '''
     users = User.query.filter_by(status='patient')
 
     if request.method == 'GET':
@@ -291,6 +351,7 @@ def add_prescription():
             return render_template("addprescription.html", users=users)
 
     if request.method == 'POST':
+        # a doctor's action to create a new prescribtion
         drug = request.form.get('drug')
         quantity = request.form.get('quantity')
         condition = request.form.get('condition')
@@ -317,6 +378,10 @@ def add_prescription():
 @app.route('/patientdashboard', methods=['GET', 'POST'])
 @login_required
 def patientdashboard():
+    '''
+    The patient dashboard
+    gives an overview on the current appointments
+    '''
     appointments_query = Appointment.query.filter_by(
     patient_id=current_user.id).all()
     appointments = []
@@ -325,6 +390,7 @@ def patientdashboard():
         appointments.append({"appointment": appointment, "doctor": doctor})
 
     if request.method == 'POST':
+        # the patient action to delete an appointment
         _id = int(request.form.get('id'))
         try:
             # deletes from the db and removes from the list of 
@@ -342,7 +408,10 @@ def patientdashboard():
 @app.route('/editpatientprofile', methods=['GET', 'POST'])
 @login_required
 def editpatientprofile():
-
+    '''
+    The patient edit profile view
+    enables the patient to edit profile
+    '''
     if request.method == 'POST':
         patient = User.query.get(current_user.id)
 
@@ -381,6 +450,11 @@ def editpatientprofile():
 @app.route('/bookappointment', methods=['POST', 'GET'])
 @login_required
 def bookappointment():
+
+    '''
+    The Patient's book appointment view
+    enables the patient to book an appointment with a doctor
+    '''
     if request.method == 'GET':
         if current_user.status != 'patient':
             return render_template('403.html')
@@ -399,6 +473,7 @@ def bookappointment():
         condition = request.form.get('injury-condition')
 
         if not all([firstname, lastname, date, time, phone_number, doctor_id, gender, condition]):
+            # ensure all the fields are complete
             flash("Enter all required fields")
             return redirect(url_for('bookappointment'))
         try:
@@ -451,7 +526,9 @@ def patientdetails():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-
+    '''
+    The login view for all users
+    '''
     if request.method == 'POST':
 
         email = request.form.get('email')
@@ -480,6 +557,9 @@ def login():
 
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
+    '''
+    The signup view for the both the doctors and the patients
+    '''
 
     if request.method == 'POST':
         # Read the posted values from the UI
@@ -534,6 +614,9 @@ def signup():
 
 @ app.route('/logout')
 def logout():
+    '''
+    The logout handler
+    '''
     logout_user()
     return redirect(url_for('login'))
 

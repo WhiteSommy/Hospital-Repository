@@ -8,8 +8,14 @@ db = SQLAlchemy()
 
 
 class User(UserMixin, db.Model):
+    '''
+    The User Model
+    Defines all the users in the systems
+        -> admins
+        -> doctors
+        -> patients
+    '''
     __tablename__ = "user"
-    # primary keys are required by SQLAlchemy
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.String(100))
     lastname = db.Column(db.String(100))
@@ -17,7 +23,7 @@ class User(UserMixin, db.Model):
     phonenumber = db.Column(db.String(100))
     gender = db.Column(db.String(50))
     password = db.Column(db.String(1000))
-    status = db.Column(db.String(50))
+    status = db.Column(db.String(50)) # this is the fields that is used to differentiate between the different type of users
 
     def __init__(self, firstname, lastname, email, password, phonenumber, gender, status):
         self.firstname = firstname
@@ -29,23 +35,39 @@ class User(UserMixin, db.Model):
         self.status = status
 
     def add_user(self):
+        '''
+        Adds a user to the db
+        '''
         db.session.add(self)
         db.session.commit()
 
     def update_user(self):
+        '''
+        updates a user row
+        '''
         db.session.commit()
 
     def delete(self):
+        '''
+        removes a user from the database
+        '''
         db.session.delete(self)
         db.session.commit()
 
 
 @login.user_loader
 def load_user(id):
+    '''
+    A callback to load the user data each session
+    '''
     return User.query.get(int(id))
 
 
 class Appointment(db.Model):
+    '''
+    The Appointment model
+    Defines the appointment between the doctors and patients
+    '''
     __tablename__ = "appointment"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -72,15 +94,25 @@ class Appointment(db.Model):
         self.condition = condition
 
     def add_appointment(self):
+        '''
+        add appointment to the db
+        '''
         db.session.add(self)
         db.session.commit()
 
     def delete(self):
+        '''
+        remove appointment from the db
+        '''
         db.session.delete(self)
         db.session.commit()
 
 
 class Prescription(db.Model):
+    '''
+    The Prescription model
+    Defines the prescription given to patients by doctors
+    '''
     __tablename__ = 'prescription'
     id = db.Column(db.Integer, primary_key=True)
     drug = db.Column(db.String(100))
@@ -97,5 +129,8 @@ class Prescription(db.Model):
         self.doctor_id = doctor_id
 
     def add_prescription(self):
+        '''
+        Add prescription to the db
+        '''
         db.session.add(self)
         db.session.commit()
