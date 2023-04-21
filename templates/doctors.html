@@ -25,7 +25,10 @@ block content %}
           <td>{{doctor.gender}}</td>
           <td>{{doctor.email}}</td>
           <td>
-            <a class="btn btn-danger btn-sm" href="/">Delete </a>
+            <form method="POST" action="./doctors">
+              <input type="hidden" name="id" value="{{doctor.id}}" />
+              <button class="btn btn-danger btn-sm">Delete </button>
+            </form>
           </td>
         </tr>
       </tbody>

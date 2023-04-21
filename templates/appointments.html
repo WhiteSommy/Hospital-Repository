@@ -28,8 +28,11 @@
                     <td>{{appointment.date}}</td>
                     <td>{{appointment.time}}</td>
                     <td>{{appointment.condition}}</td>
-                      <td>
-                        <a class="btn btn-danger btn-sm" href="/">Delete </a>
+                    <td>
+                        <form method="POST" action="./appointments">
+                            <input type="hidden" name="id" value="{{appointment.id}}" />
+                            <button class="btn btn-danger btn-sm">Delete </button>
+                        </form>
                     </td>
                 </tr>
             </tbody>

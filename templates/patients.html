@@ -24,8 +24,11 @@
                     <td>{{patient.gender}}</td>
                     <td>{{patient.phonenumber}}</td>
                     <td>{{patient.email}}</td>
-                      <td>
-                        <a class="btn btn-danger btn-sm" href="/">Delete </a>
+                    <td>
+                        <form method="POST" action="./patients">
+                            <input type="hidden" name="id" value="{{patient.id}}" />
+                            <button class="btn btn-danger btn-sm">Delete </button>
+                        </form>
                     </td>
                 </tr>
             </tbody>

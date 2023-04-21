@@ -31,6 +31,7 @@ def create_all():
     db.create_all()
 
 
+
 # =================================================#
 # ============== UNIVERSAL ROUTE ==================#
 
@@ -130,36 +131,77 @@ def admindashboard():
     if request.method == 'GET':
         if current_user.status != 'admin':
             return render_template('403.html')
-    return render_template("adminDashboard.html")
+        count_map = {}
+        try:
+            count_map['doctors'] = User.query.filter_by(status='doctor').count()
+            count_map['patients'] = User.query.filter_by(status='patient').count()
+            count_map['appointments'] = Appointment.query.count()
+        except Exception as e:
+            print("Error : ", str(e))
+    return render_template("adminDashboard.html", count_map=count_map)
 
 
-@app.route('/admin/doctors')
+@app.route('/admin/doctors', methods=['GET', 'POST'])
 @login_required
 def doctors():
-    if request.method == 'GET':
-        if current_user.status != 'admin':
-            return render_template('403.html')
+    if current_user.status != 'admin':
+        return render_template('403.html')
     doctors = User.query.filter_by(status='doctor').all()
+
+    if request.method == 'POST':
+        _id = int(request.form.get('id'))
+        try:
+            # deletes from the db and removes from the list of 
+            # previously queried doctors
+            User.query.get(_id).delete()
+            doctors = list(filter(lambda x : x.id != _id, 
+                                  doctors))
+        except Exception as e:
+            print("Error", str(e))
+            pass
     return render_template("doctors.html", doctors=doctors, length=len(doctors))
 
 
-@app.route('/admin/patients')
+@app.route('/admin/patients', methods=['GET', 'POST'])
 @login_required
 def patients():
-    if request.method == 'GET':
-        if current_user.status != 'admin':
-            return render_template('403.html')
+    if current_user.status != 'admin':
+        return render_template('403.html')
     patients = User.query.filter_by(status='patient').all()
+
+    if request.method == 'POST':
+        _id = int(request.form.get('id'))
+        try:
+            # deletes from the db and removes from the list of 
+            # previously queried doctors
+            User.query.get(_id).delete()
+            patients = list(filter(lambda x : x.id != _id, 
+                                  patients))
+        except Exception as e:
+            print("Error", str(e))
+            pass
     return render_template("patients.html", patients=patients, length=len(patients))
 
 
-@app.route('/admin/appointments')
+@app.route('/admin/appointments', methods=['GET', 'POST'])
 @login_required
 def allAppointments():
-    if request.method == 'GET':
-        if current_user.status != 'admin':
-            return render_template('403.html')
-    appointments = Appointment.query.all()
+    if current_user.status != 'admin':
+        return render_template('403.html')
+    
+    appointments = Appointment.query.all()    
+
+    if request.method == 'POST':
+        _id = int(request.form.get('id'))
+        try:
+            # deletes from the db and removes from the list of 
+            # previously query appointements
+            Appointment.query.get(_id).delete()
+            appointments = list(filter(lambda x : x.id != _id, 
+                                  appointments))
+        except Exception as e:
+            print("Error", str(e))
+            pass
     return render_template("appointments.html", appointments=appointments, length=len(appointments))
 
 
@@ -210,19 +252,30 @@ def editdoctorprofile():
     return render_template('editdoctorprofile.html')
 
 
-@app.route('/doctorappointments')
+@app.route('/doctorappointments', methods=['GET', 'POST'])
 @login_required
 def doctorprofile():
-    if request.method == 'GET':
-        if current_user.status != 'doctor':
-            return render_template('403.html')
-
+    if current_user.status != 'doctor':
+        return render_template('403.html')
     appointments = []
     appointments_query = Appointment.query.filter_by(
         doctor_id=current_user.id).all()
     for appointment in appointments_query:
         patient = User.query.get(appointment.patient_id)
         appointments.append({"appointment": appointment, "patient": patient})
+
+    if request.method == 'POST':
+        _id = int(request.form.get('id'))
+        try:
+            # deletes from the db and removes from the list of 
+            # previously query appointements
+            Appointment.query.get(_id).delete()
+            appointments = list(filter(lambda x : x['appointment'].id != _id, 
+                                  appointments))
+        except Exception as e:
+            print("Error", str(e))
+            pass
+
     return render_template("doctorappointments.html", appointments=appointments)
 
 
@@ -261,15 +314,28 @@ def add_prescription():
 # ================= PATIENT ROUTES ===================== #
 
 
-@app.route('/patientdashboard')
+@app.route('/patientdashboard', methods=['GET', 'POST'])
 @login_required
 def patientdashboard():
     appointments_query = Appointment.query.filter_by(
-        patient_id=current_user.id).all()
+    patient_id=current_user.id).all()
     appointments = []
     for appointment in appointments_query:
         doctor = User.query.get(appointment.doctor_id)
         appointments.append({"appointment": appointment, "doctor": doctor})
+
+    if request.method == 'POST':
+        _id = int(request.form.get('id'))
+        try:
+            # deletes from the db and removes from the list of 
+            # previously query appointements
+            Appointment.query.get(_id).delete()
+            appointments = list(filter(lambda x : x['appointment'].id != _id, 
+                                  appointments))
+        except Exception as e:
+            print("Error", str(e))
+            pass
+        
     return render_template('patient.html', appointments=appointments)
 
 
@@ -417,6 +483,7 @@ def signup():
 
     if request.method == 'POST':
         # Read the posted values from the UI
+        print("Posting...")
 
         firstname = request.form.get('firstname')
         lastname = request.form.get('lastname')
@@ -429,10 +496,12 @@ def signup():
 
         # Validate the received values
         if not all([firstname, lastname, email, gender, user_password, phonenumber, status, confirm_password]):
+            print("There is an error")
             flash("Enter all required fields")
             return redirect(url_for('signup'))
 
         if user_password != confirm_password:
+            print("Password not mathcin")
             flash('Password Mismatch')
             return redirect(url_for('signup'))
 
@@ -440,6 +509,7 @@ def signup():
         user = User.query.filter_by(email=email).first()
 
         if user:
+            print("User exists already")
             flash("User already exist")
             return redirect(url_for('signup'))
 
