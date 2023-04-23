@@ -7,6 +7,7 @@ login = LoginManager()
 db = SQLAlchemy()
 
 
+
 class User(UserMixin, db.Model):
     '''
     The User Model

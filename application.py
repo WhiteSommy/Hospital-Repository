@@ -260,7 +260,7 @@ def doctordashboard():
     if request.method == 'GET':
         if current_user.status != 'doctor':
             return render_template('403.html')
-    appointments = len(Appointment.query.all())
+    appointments = len(Appointment.query.filter_by(doctor_id=current_user.id).all())
     return render_template("doctordash.html", total_appointments=appointments)
 
 

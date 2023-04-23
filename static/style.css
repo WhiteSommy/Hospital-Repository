@@ -166,3 +166,6 @@
 	display: none;
 }
 
+.mytable th {
+	padding-right: 10px;
+}
